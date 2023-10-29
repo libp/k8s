@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: apache-node1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: apache-node1
+  template:
+    metadata:
+        labels:
+          app: apache-node1
+    spec:
+      containers:
+        - name: apache-node1
+          image: libp/apache:v2
+          resources:
+            limits:
+              cpu: "1"
+              memory: "512Mi"
+            requests:
+              cpu: "0.5"
+              memory: "256Mi"
+
