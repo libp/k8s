@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: honeybee-deployment
+  name: honeybee-deployment
+  namespace: gorilla
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: honeybee-deployment
+  template:
+    metadata:
+      labels:
+        app: honeybee-deployment
+    spec:
+      containers:
+      - image: registry.cn-zhangjiakou.aliyuncs.com/breezey/honeybee:v0.3
+        name: honeybee
