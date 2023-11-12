@@ -1,0 +1,34 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: apache-external
+  labels:
+    app: apache  
+spec:
+  type: ExternalName
+  externalName: nichuiniu.cn
+
+
+# 直接在容器里 nslookup apache-external
+# 服务使用场景：隐藏外部服务的细节、集成不同的环境
+# /var/www/html # nslookup apache-external
+# Server:         10.96.0.10
+# Address:        10.96.0.10:53
+
+# apache-external.default.svc.cluster.local       canonical name = nichuiniu.cn
+# nichuiniu.cn    canonical name = nichuiniu.cn.cdn.dnsv1.com
+# nichuiniu.cn.cdn.dnsv1.com      canonical name = 7oxbs48j.slt.sched.tdnsv8.com
+
+# apache-external.default.svc.cluster.local       canonical name = nichuiniu.cn
+# nichuiniu.cn    canonical name = nichuiniu.cn.cdn.dnsv1.com
+# nichuiniu.cn.cdn.dnsv1.com      canonical name = 7oxbs48j.slt.sched.tdnsv8.com
+# Name:   7oxbs48j.slt.sched.tdnsv8.com
+# Address: 118.212.235.109
+# Name:   7oxbs48j.slt.sched.tdnsv8.com
+# Address: 122.189.171.55
+# Name:   7oxbs48j.slt.sched.tdnsv8.com
+# Address: 118.212.235.231
+# Name:   7oxbs48j.slt.sched.tdnsv8.com
+# Address: 118.212.235.102
+# Name:   7oxbs48j.slt.sched.tdnsv8.com
+# Address: 122.189.171.111
