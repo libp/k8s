@@ -1,0 +1,10 @@
+kubectl drain k8s-master --ignore-daemonsets
+apt update -y
+apt-cache madison kubeadm
+apt upgrade kubeadm=1.28.2-00 kubelet=1.28.2-00 kubectl=1.28.2-00 -y
+kubeadm version
+
+kubeadm upgrade plan
+kubeadm upgrade apply v1.28.2 --etcd-upgrade=false
+
+kubectl uncordon k8s-master 

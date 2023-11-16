@@ -1,0 +1,6 @@
+
+# 将节点置为不可用
+# kubectl drain k8s-worker1 --ignore-daemonsets
+
+# 恢复节点
+# kubectl uncordon k8s-worker1
