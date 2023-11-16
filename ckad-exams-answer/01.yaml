@@ -1,6 +1,15 @@
+# 创建一个名为deployment-clusterrole且仅允许创建以下资源类型的新ClusterRole:
+#   Deployment
+#   StatefulSet
+#   DaemonSet
+# 在现有的namespace app-team1中创建一个名为cicd-token的新ServiceAccount。
+# 限于namespace app-team1，将新的ClusterRole deployment-clusterrole绑定到新的ServiceAccount cicd-token
 
-# 将节点置为不可用
-# kubectl drain k8s-worker1 --ignore-daemonsets
+# 关键字：ClusterRole、ServiceAccount
+# 链接：https://kubernetes.io/zh-cn/docs/reference/access-authn-authz/rbac/
+# https://kubernetes.io/zh-cn/docs/tasks/configure-pod-container/configure-service-account/
 
-# 恢复节点
-# kubectl uncordon k8s-worker1
+# 解题
+
+
+

@@ -1,3 +1,4 @@
+# 将一个名为ek8s-node-1的节点设置为不可用并将其上的pod重新调度
 
 # 将节点置为不可用
 # kubectl drain k8s-worker1 --ignore-daemonsets
