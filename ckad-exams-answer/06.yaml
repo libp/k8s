@@ -1,0 +1,64 @@
+# 题目6
+
+# 重新配置现有的部署前端，并添加一个名为http的端口配置，将现有容器nginx的80/tcp端口暴露出来。
+# 创建一个名为front-end-svc的新服务，将容器端口http暴露出来。
+# 配置新服务，使其通过节点上的NodePort也能访问各个Pod。
+
+# 关键字：
+# 链接：
+
+# 解题
+
+
+#front-end.yaml
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: front-end
+  name: front-end
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: front-end
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: front-end
+    spec:
+      containers:
+      - image: nginx
+        name: nginx
+        resources: {}
+
+# front-end-svc.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: front-end-svc
+  name: front-end-svc
+spec:
+  ports:
+  - name: 80-80
+    port: 80
+    protocol: TCP
+    targetPort: 80
+  selector:
+    app: front-end
+  type: NodePort
+
+# kubectl edit deploy front-end
+
+# ```
+#         ports:
+#         - name: http
+#           containerPort: 80
+#           protocol: TCP
+
+# ```
+
+# kubectl apply -f front-end-svc.yaml

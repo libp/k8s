@@ -1,0 +1,33 @@
+# Schedule a pod as follows:
+#   Name: nginx-kusc00401
+#   Image: nginx
+#   Node selector: disk=spinning
+
+# 解题
+
+# 关键字：nodeSelector
+# 链接：
+
+# config env
+
+# kubectl label node cka03 disk=spinning
+
+# answer
+
+# kubectl run nginx-kusc00401 --image=nginx --dry-run=client -o yaml
+
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    run: nginx-kusc00401
+  name: nginx-kusc00401
+spec:
+  nodeSelector:
+    disk: spinning
+  containers:
+  - image: nginx
+    name: nginx-kusc00401
+    resources: {}
+  dnsPolicy: ClusterFirst
+  restartPolicy: Always

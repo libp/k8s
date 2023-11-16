@@ -1,0 +1,21 @@
+# Create a persistent volume with name app-config, of capacity 1Gi and access mode ReadOnlyMany. The type of volume is hostPath and its location is /srv/app-config.
+
+# 解题
+
+# 关键字：PersistentVolume
+# 链接：https://kubernetes.io/zh-cn/docs/concepts/storage/persistent-volumes/
+
+
+# app-config.yaml
+
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: app-config
+spec:
+  capacity:
+    storage: 1Gi
+  accessModes:
+    - ReadOnlyMany
+  hostPath:
+    path: /srv/app-config

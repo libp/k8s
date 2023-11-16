@@ -1,0 +1,34 @@
+# 题目7
+
+# Create a new nginx ingress resource as follows:
+#   Name: ping 
+#   Namespace: ing-internal
+#   Exposing service hi on path /hi using service port 5678
+
+# tips: The availability of service hi can be checked using the following commands,which should retun hi: 
+# curl -KL <INTERNAL_IP>/hi
+
+# 解题
+
+# 关键字：
+# 链接：
+
+
+# ping.yaml
+
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ping
+  namespace: ing-internal
+spec:
+  rules:
+  - http:
+      paths:
+      - path: /hi
+        pathType: Prefix
+        backend:
+          service:
+            name: hi
+            port:
+              number: 5678

@@ -1,0 +1,41 @@
+# 题目5 
+
+# 创建一个名为allow-port-from-namespace的新NetworkPolicy，以允许现有namespace internal中的Pods连接到同一namespace中其他Pods的端口8080。
+# 确保新的NetworkPolicy：
+#   不允许对没有在监听端口8080的pods的访问
+#   不允许不来自namespace internal的pods的访问
+
+# 解题
+
+# 关键字：NetworkPolicy
+# 链接：https://kubernetes.io/zh-cn/docs/concepts/services-networking/network-policies/
+
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: allow-port-from-namespace
+  namespace: internal
+spec:
+  podSelector: {}
+  policyTypes:
+  - Ingress
+  - Egress
+  ingress:
+  - from:
+    - podSelector: {}
+    ports:
+    - protocol: TCP
+      port: 8080
+    - protocol: UDP
+      port: 8080
+  egress:
+  - to:
+    - podSelector: {}
+    ports:
+    - protocol: TCP
+      port: 8080
+    - protocol: UDP
+      port: 8080
+
+# kubectl create namespace internal
+# kubectl apply -f allow-port-from-namespace.yaml

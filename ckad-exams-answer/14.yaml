@@ -1,0 +1,14 @@
+# Monitor the logs of pod bar and:
+#   Extract log lines corresponding to error unable-to-access-website
+#   Write them to /opt/KUTR00101/bar
+
+# 解题
+
+# 关键字：
+# 链接：
+
+# config env
+kubectl run bar --image=registry.cn-zhangjiakou.aliyuncs.com/breezey/bar
+
+# answer
+kubectl logs bar  |grep unable-to-access-website > /tmp/bar

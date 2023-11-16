@@ -1,0 +1,16 @@
+# Check to see how many nodes are ready(not including nodes tainted NoSchedule) and write the number to /opt/KUSCoo402/kusc00402.txt.
+
+# 解题
+
+# 关键字：
+# 链接：
+
+# kubectl get nodes
+# kubectl describe node k8s-master
+# 直接数有几个Taints 为none的即可
+# root@k8s-master:~/k8s/ckad-exams-answer# kubectl describe node k8s-master|grep Taints
+# Taints:             node-role.kubernetes.io/control-plane:NoSchedule
+# root@k8s-master:~/k8s/ckad-exams-answer# kubectl describe node k8s-worker1|grep Taints
+# Taints:             <none>
+# root@k8s-master:~/k8s/ckad-exams-answer# kubectl describe node k8s-worker2|grep Taints
+# Taints:             <none>

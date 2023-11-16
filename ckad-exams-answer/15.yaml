@@ -1,0 +1,47 @@
+# Add a busybox sidecar container to the existing Pod big-corp-app.The new sidecar container has to run the following command: 
+# /bin/sh -c tail -n+1 /var/log/big-corp-app.log
+
+# Use a volume mount named logs to make the file /var/log/big-corp-app.log available to the sidecar container
+
+# warn: Don't modify the existing container. Don't modify the path of the log file. both containers must access it at /var/log/big-corp-app.log
+
+# 解题
+
+# 关键字：
+# 链接：
+
+# config env
+kubectl run  big-corp-app --image=registry.cn-zhangjiakou.aliyuncs.com/breezey/bar 
+
+# answer
+# big-corp-app.yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    run: big-corp-app
+  name: big-corp-app
+spec:
+  volumes:
+  - name: logs
+    emptyDir: 
+  containers: 
+- image: registry.cn-zhangjiakou.aliyuncs.com/breezey/bar
+    name: big-corp-app
+    volumeMounts:
+    - name: logs
+      mountPath: /var/log
+resources: {}
+  - name: busybox
+image: busybox
+volumeMounts:
+- name: logs
+  mountPath: /var/log
+command:
+    - "/bin/sh"
+    - "-c"
+- "tail -n+1 /var/log/big-corp-app.log" 
+  dnsPolicy: ClusterFirst
+  restartPolicy: Always
+
+kubectl apply -f big-corp-app.yaml
