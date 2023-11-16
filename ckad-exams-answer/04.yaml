@@ -1,5 +1,3 @@
-# 题目4 
-
 # 首先，为运行在https://127.0.0.1:2379上的现有etcd实例创建快照并将快照保存至/data/bucket/etcd-snapshot.db
 # 然后还原位于/srv/data/etcd-snaphot-previous.db的现有先前快照
 

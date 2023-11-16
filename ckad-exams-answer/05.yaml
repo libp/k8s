@@ -1,5 +1,3 @@
-# 题目5 
-
 # 创建一个名为allow-port-from-namespace的新NetworkPolicy，以允许现有namespace internal中的Pods连接到同一namespace中其他Pods的端口8080。
 # 确保新的NetworkPolicy：
 #   不允许对没有在监听端口8080的pods的访问
