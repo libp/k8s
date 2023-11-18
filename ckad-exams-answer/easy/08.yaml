@@ -1,5 +1,7 @@
 # Scale the deploy persentation to 3 pods
 
+# 4分
+
 # 解题
 
 # 关键字：
@@ -9,4 +11,4 @@
 # kubectl create deploy presentation --image=busybox -- sleep 3600
 
 # answer
-# kubectl scale --replicas=3 deploy/presentation
+# kubectl edit deployment presentation

@@ -24,6 +24,10 @@ kubectl exec mypod -it -- ls -ltr /usr
 kubectl exec mypod -c ruby-container -- date
 ```
 
+## kubectl 回退版本
+<!-- 直接进入deployment修改镜像版本即可 -->
+kubectl edit deployment coredns -n kube-system
+
 ## install metallb for Loadbalancer
 
 ```
@@ -39,3 +43,8 @@ speaker-fhmwd                 1/1     Running   0          2m42s
 speaker-q9h7z                 1/1     Running   0          2m42s
 speaker-x99lk                 1/1     Running   0          2m42s
 ```
+
+## 考试注意事项
+
+1. 可以根据关键字查询官方文档
+2. 注意k8s集群选择，每做一题，切换执行环境

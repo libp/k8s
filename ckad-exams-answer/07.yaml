@@ -6,10 +6,12 @@
 # tips: The availability of service hi can be checked using the following commands,which should retun hi: 
 # curl -KL <INTERNAL_IP>/hi
 
+# 分数：7
+
 # 解题
 
-# 关键字：
-# 链接：
+# 关键字：ingress
+# 链接：https://kubernetes.io/zh-cn/docs/concepts/services-networking/ingress/
 
 
 # ping.yaml
@@ -30,3 +32,6 @@ spec:
             name: hi
             port:
               number: 5678
+
+
+# kubectl create ingress ping -n ing-internal --rule=/hi=hi:5678 --dry-run=client -o yaml

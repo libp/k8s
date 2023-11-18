@@ -2,11 +2,18 @@
 # 创建一个名为front-end-svc的新服务，将容器端口http暴露出来。
 # 配置新服务，使其通过节点上的NodePort也能访问各个Pod。
 
-# 关键字：
-# 链接：
+# 关键字：service
+# 链接：https://kubernetes.io/zh-cn/docs/concepts/workloads/controllers/deployment/
+# https://kubernetes.io/zh-cn/docs/concepts/services-networking/service/
+
+# 分数：7
+
+#  selector:
+#    app: front-end
+# 这个selector 是个失分点
+# 另外培训老师给他的实验环境，注意创建svc时指定namespace
 
 # 解题
-
 
 #front-end.yaml
 
@@ -52,11 +59,13 @@ spec:
 # kubectl edit deploy front-end
 
 # ```
-#         ports:
-#         - name: http
-#           containerPort: 80
-#           protocol: TCP
+        ports:
+        - name: http
+          containerPort: 80
+          protocol: TCP
 
 # ```
 
 # kubectl apply -f front-end-svc.yaml
+
+# kubectl create service nodeport front-end-svc --tcp=80:80 --dry-run=client -o yam

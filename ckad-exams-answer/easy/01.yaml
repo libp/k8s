@@ -1,0 +1,55 @@
+# 创建一个名为deployment-clusterrole且仅允许创建以下资源类型的新ClusterRole:
+#   Deployment
+#   StatefulSet
+#   DaemonSet
+# 在现有的namespace app-team1中创建一个名为cicd-token的新ServiceAccount。
+# 限于namespace app-team1，将新的ClusterRole deployment-clusterrole绑定到新的ServiceAccount cicd-token
+
+# 分数：4
+
+# 关键字：ClusterRole、ServiceAccount、RoleBinding
+# 链接：https://kubernetes.io/zh-cn/docs/reference/access-authn-authz/rbac/
+# https://kubernetes.io/zh-cn/docs/tasks/configure-pod-container/configure-service-account/
+
+# 解题
+
+# kubectl create clusterrole deployment-clusterrole --resource=deployment,statefulset,daemonset --verb=create --dry-run=client -o yaml
+
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: deployment-clusterrole
+rules:
+- apiGroups:
+  - apps
+  resources:
+  - daemonsets
+  - deployments
+  - statefulsets
+  verbs:
+  - create
+
+# kubectl create namespace app-team1
+# namespace/app-team1 created
+
+# root@k8s-master:~# kubectl create serviceaccount cicd-token --namespace=app-team1 --dry-run=client -o yaml
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: cicd-token
+  namespace: app-team1
+
+# kubectl create rolebinding cicd-token-rolebinding --clusterrole=deployment-clusterrole --serviceaccount=app-team1:cicd-token --namespace=app-team1 --dry-run=client -o yaml
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: cicd-token-rolebinding
+  namespace: app-team1
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: deployment-clusterrole
+subjects:
+- kind: ServiceAccount
+  name: cicd-token
+  namespace: app-team1
