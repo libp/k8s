@@ -3,17 +3,17 @@
 #   Image: nginx
 #   Node selector: disk=spinning
 
+# 分数：4
+
 # 解题
 
 # 关键字：nodeSelector
-# 链接：
+# 链接：https://kubernetes.io/zh-cn/docs/tasks/configure-pod-container/assign-pods-nodes/#create-a-pod-scheduled-to-chosen-node
 
 # config env
-
 # kubectl label node cka03 disk=spinning
 
 # answer
-
 # kubectl run nginx-kusc00401 --image=nginx --dry-run=client -o yaml
 
 apiVersion: v1

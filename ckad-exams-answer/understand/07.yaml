@@ -35,3 +35,4 @@ spec:
 
 
 # kubectl create ingress ping -n ing-internal --rule=/hi=hi:5678 --dry-run=client -o yaml
+# kubectl create ingress --help

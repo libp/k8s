@@ -1,5 +1,7 @@
 # Create a persistent volume with name app-config, of capacity 1Gi and access mode ReadOnlyMany. The type of volume is hostPath and its location is /srv/app-config.
 
+# 分数：4
+
 # 解题
 
 # 关键字：PersistentVolume

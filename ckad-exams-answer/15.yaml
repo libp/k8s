@@ -5,6 +5,8 @@
 
 # warn: Don't modify the existing container. Don't modify the path of the log file. both containers must access it at /var/log/big-corp-app.log
 
+# 分数：7分
+
 # 解题
 
 # 关键字：
@@ -26,22 +28,22 @@ spec:
   - name: logs
     emptyDir: 
   containers: 
-- image: registry.cn-zhangjiakou.aliyuncs.com/breezey/bar
-    name: big-corp-app
-    volumeMounts:
-    - name: logs
-      mountPath: /var/log
-resources: {}
-  - name: busybox
-image: busybox
-volumeMounts:
-- name: logs
-  mountPath: /var/log
-command:
-    - "/bin/sh"
-    - "-c"
-- "tail -n+1 /var/log/big-corp-app.log" 
-  dnsPolicy: ClusterFirst
-  restartPolicy: Always
+  - image: registry.cn-zhangjiakou.aliyuncs.com/breezey/bar
+      name: big-corp-app
+      volumeMounts:
+      - name: logs
+        mountPath: /var/log
+  resources: {}
+    - name: busybox
+  image: busybox
+  volumeMounts:
+  - name: logs
+    mountPath: /var/log
+  command:
+      - "/bin/sh"
+      - "-c"
+  - "tail -n+1 /var/log/big-corp-app.log" 
+    dnsPolicy: ClusterFirst
+    restartPolicy: Always
 
 kubectl apply -f big-corp-app.yaml

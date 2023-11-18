@@ -9,6 +9,8 @@
 # Configure the new Pod to have ReadWriteOnce access on the volume.
 # Finally, using kubectl edit or kubectl patch expand the PersistentVolumeClaim to a capacity of 70Mi and record that change
 
+# 分数：7
+
 # 解题
 
 # 关键字：
