@@ -1,0 +1,12 @@
+# From the pod label name=cpu-loader, find pods running high CPU workloads and write the name of the pod consuming most CPU to file /opt/KUTR00401.txt(which alreay exists).
+
+# 分数：5分
+
+# 解题
+
+# 关键字： kubectl top pods
+# 链接：
+
+# answer
+
+kubectl top pods -l name=cpu-loader | sort -k2 -nr | head -1 | awk '{print $1}' > /tmp/cpu-loader.txt

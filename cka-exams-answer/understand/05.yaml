@@ -3,6 +3,8 @@
 #   不允许对没有在监听端口8080的pods的访问
 #   不允许不来自namespace internal的pods的访问
 
+# 分数：7分
+
 # 解题
 
 # 关键字：NetworkPolicy

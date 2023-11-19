@@ -3,15 +3,32 @@
 
 # 提示： 为给定实例创建快照预计在几秒内完成。如果该操作似乎挂起，则命令可能有问题。用ctrl+c来取消操作，然后重试。
 
+# 分数：7分
+
 # 提供了以下TLS证书和密钥，以通过etcdctl连接到服务器
 # CA证书：/opt/KUIN00601/ca.crt
 # 客户端证书： /opt/KUIN00601/etcd-client.crt
 # 客户端密钥：/opt/KUIN00601/etcd-client.key
 
-# 解题
+# 还原时，注意执行还原命令时，只还原到执行操作的当前目录
+# 需要重启etcd
+
+# 关键字 etcd
+# https://kubernetes.io/zh-cn/docs/tasks/administer-cluster/configure-upgrade-etcd/#multi-node-etcd-cluster
+
 
 # 保存etcd实例快照
 # etcdclt --endpoint=https://127.0.0.1:2379 --cacert=/opt/KUIN00601/ca.crt --cert=/opt/KUIN00601/etcd-client.crt --key=/opt/KUIN00601/etcd-client.key snapshot save /data/backup/etcd-snapshot.db
 
+
 # 还原现有先前快照
 # etcdclt snapshot restore /srv/data/etcd-snapshot-previous.db
+
+# 停止etcd，并把还原的目录拷贝到/var/lib/etcd，最后重启etcd
+# systemctl stop etcd
+
+# ll /var/lib/etcd -d
+# mv /var/lib/etcd /tmp/etcd.bak
+# mv ~/default.etcd /var/lib/etcd
+# chown etcd.etcd -R /var/lib/etcd
+# systemctl start etcd 

@@ -5,7 +5,7 @@
 # Do not upgrade the worker nodes,etcd,the container manager,the CNI plugin, the DNS service or any other addons.
 
 # 分数：7
-# 关键字：集群升级
+# 关键字：集群升级\drain\uncordon
 # 链接：https://kubernetes.io/zh-cn/docs/tasks/administer-cluster/kubeadm/kubeadm-upgrade/
 
 kubectl drain k8s-master --ignore-daemonsets
@@ -28,3 +28,6 @@ kubectl uncordon k8s-master
 apt-mark unhold kubelet kubectl && \
 apt-get update && apt-get install -y kubelet='1.28.2-00' kubectl='1.28.2-00' && \
 apt-mark hold kubelet kubectl
+
+systemctl daemon-reload
+systemctl restart kubelet

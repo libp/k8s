@@ -1,5 +1,7 @@
 # A kubernetes worker node, named wk8s-node-0 is in state NotReady. Investigate why this is the case, and perform any appropriate steps to bring the node to a Ready state,ensuring that any changes are made permanent.
 
+# 分数：13
+
 # tips: 
 
 # you can ssh to the failed node using:
@@ -13,8 +15,5 @@
 # 关键字：
 # 链接：
 
-systemctl start docker 
-systemctl start kubelet 
-systemctl enable kubelet docker
-
-#？ 看下视频，好像是kubeadm
+systemctl start kubelet containerd
+systemctl enable kubelet containerd

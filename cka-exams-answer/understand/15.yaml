@@ -46,4 +46,4 @@ spec:
     dnsPolicy: ClusterFirst
     restartPolicy: Always
 
-kubectl apply -f big-corp-app.yaml
+kubectl replace -f big-corp-app.yaml --force
