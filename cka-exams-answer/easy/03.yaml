@@ -8,7 +8,6 @@
 # 关键字：集群升级\drain\uncordon
 # 链接：https://kubernetes.io/zh-cn/docs/tasks/administer-cluster/kubeadm/kubeadm-upgrade/
 
-kubectl drain k8s-master --ignore-daemonsets
 
 apt update -y
 apt-cache madison kubeadm
@@ -22,8 +21,8 @@ kubeadm upgrade plan
 kubeadm upgrade apply v1.28.2 --etcd-upgrade=false
 # kubeadm upgrade apply --help
 
-kubectl uncordon k8s-master 
 
+kubectl drain k8s-master --ignore-daemonsets
 
 apt-mark unhold kubelet kubectl && \
 apt-get update && apt-get install -y kubelet='1.28.2-00' kubectl='1.28.2-00' && \
@@ -31,3 +30,6 @@ apt-mark hold kubelet kubectl
 
 systemctl daemon-reload
 systemctl restart kubelet
+
+
+kubectl uncordon k8s-master 
