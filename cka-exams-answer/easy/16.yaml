@@ -7,6 +7,8 @@
 # 关键字： kubectl top pods
 # 链接：
 
+
+
 # answer
 
 kubectl top pods -l name=cpu-loader | sort -k2 -nr | head -1 | awk '{print $1}' > /tmp/cpu-loader.txt

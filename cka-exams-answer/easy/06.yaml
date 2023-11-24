@@ -11,56 +11,8 @@
 
 #  selector:
 #    app: front-end
-# 这个selector 是个失分点
+# 这个selector 是个失分点；解题之后，要用service的地址进行curl测试
 # 另外培训老师给他的实验环境，注意创建svc时指定namespace
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 # 解题
